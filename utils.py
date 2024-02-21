@@ -9,20 +9,24 @@ from torchvision import transforms, datasets
 
 
 # Define transformations for training and testing/validation
-TRAIN_TRANSFORM = transforms.Compose([transforms.Resize(255),
-                                      transforms.CenterCrop(224),
-                                      transforms.RandomRotation(30),
-                                      transforms.RandomHorizontalFlip(),
-                                      transforms.ToTensor(),
-                                      transforms.Normalize([0.485, 0.456, 0.406],
-                                                           [0.229, 0.224, 0.225])])
+TRAIN_TRANSFORM = transforms.Compose([
+    transforms.Resize(255),
+    transforms.RandomResizedCrop(224),
+    transforms.RandomRotation(30),
+    transforms.RandomHorizontalFlip(),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.2),
+    transforms.GaussianBlur(kernel_size=3),
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+])
 
 # transforms for testing and validation
-TEST_TRANSFORM = transforms.Compose([transforms.Resize(255),
-                                      transforms.CenterCrop(224),
-                                      transforms.ToTensor(),
-                                      transforms.Normalize([0.485, 0.456, 0.406],
-                                                           [0.229, 0.224, 0.225])])
+TEST_TRANSFORM = transforms.Compose([
+    transforms.Resize(255),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+])
                                             
 def data_loader(dataset: datasets, batch_size: int, shuffle: bool, device: torch.device) -> DataLoader:
     """
