@@ -1,4 +1,4 @@
-# Project Name
+# Image Classification 
 
 This project is a solution for training and making predictions using neural network models built with PyTorch. It provides scripts for training, predicting, and modular operations for model handling. With support for GPU acceleration, automatic checkpoint saving, and compatibility with popular architectures like VGG and ResNet, the project allows users to  create, train, and utilize deep learning models for various tasks.
 
